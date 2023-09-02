@@ -1,5 +1,10 @@
 const express = require('express')
+const morgan = require('morgan')
+
 const app = express()
+
+app.use(express.json())
+app.use(morgan('tiny'))
 
 let persons = [
     {
@@ -49,8 +54,6 @@ app.get('/info', (request, response) => {
     const date = new Date()
     response.send(`Phonebook has info for ${persons.length} people. <br /> ${date}`)
 })
-
-app.use(express.json())
 
 const generateId = () => {
     const randomId = Math.floor(Math.random() * 1000)
