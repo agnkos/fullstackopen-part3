@@ -15,10 +15,19 @@ DELETE http://localhost:3001/api/persons/64f9d3544f30c644893f972d
 
 ###
 
-POST http://localhost:3001/api/persons
+POST http://localhost:3001/api/persons/
+Content-type: application/json
+{
+    "name": "Krzysiek",
+    "number": "99990000"
+}
+
+###
+
+PUT http://localhost:3001/api/persons/64faec32787509dc4ef2d586
 Content-type: application/json
 
 {
-    "name": "Tomek",
-    "number": "123450000"
+    "name": "Krzysiek",
+    "number": "34567"
 }

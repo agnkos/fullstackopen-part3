@@ -53,10 +53,6 @@ app.post('/api/persons', (request, response) => {
         return response.status(400).json({ error: 'number missing' })
     }
 
-    // if (persons.some(p => p.name === body.name)) {
-    //     return response.status(400).json({ error: 'name already exists in the phonebook' })
-    // }
-
     const person = new Person({
         name: body.name,
         number: body.number,
@@ -65,6 +61,21 @@ app.post('/api/persons', (request, response) => {
     person.save().then(savedPerson => {
         response.json(savedPerson)
     })
+})
+
+app.put('/api/persons/:id', (request, response, next) => {
+    const body = request.body
+    const person = {
+        name: body.name,
+        number: body.number
+    }
+
+    Person.findByIdAndUpdate(request.params.id, person, { new: true })
+        .then(updatedPerson => {
+            response.json(updatedPerson)
+        })
+        .catch(error => next(error))
+
 })
 
 morgan.token('body', function (req, res) { return JSON.stringify(req.body) })
