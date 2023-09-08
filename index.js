@@ -37,9 +37,10 @@ app.delete('/api/persons/:id', (request, response, next) => {
         .catch(error => next(error))
 })
 
-app.get('/info', (request, response) => {
+app.get('/info', async (request, response) => {
     const date = new Date()
-    response.send(`Phonebook has info for ${persons.length} people. <br /> ${date}`)
+    const collectionLength = await Person.estimatedDocumentCount()
+    response.send(`Phonebook has info for ${collectionLength} people. <br /> ${date}`)
 })
 
 app.post('/api/persons', (request, response) => {
