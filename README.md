@@ -3,6 +3,5 @@
 [link](https://phonebook-5n10.onrender.com)
 
 example requests:
-/info
-/api/persons
-/api/persons/1
+<br/>/info
+<br/>/api/persons
